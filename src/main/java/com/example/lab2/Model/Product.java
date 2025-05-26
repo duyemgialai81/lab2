@@ -1,4 +1,4 @@
-package com.example.lab2.Controller.Bai3.Model;
+package com.example.lab2.Model;
 
 import lombok.*;
 

@@ -1,16 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Chọn Phương Thức</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn-custom {
+            border-radius: 10px;
+            padding: 10px 20px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-custom:hover {
+            transform: scale(1.05);
+        }
+
+        h4 {
+            color: #0d6efd;
+        }
+    </style>
 </head>
 <body>
-<form action="/ctrl/ok" method="post">
-    <button name="btn" value="1">OK 1</button>
-    <button name="btn" value="2" formmethod="get">OK 2</button>
-    <button name="btn" value="3" formaction="/ctrl/ok?x=3">OK 3</button>
-</form>
 
-<h1 th:text="${methodName}"></h1>
+<div class="container">
+    <div class="card text-center" style="max-width: 500px;">
+        <h4 class="mb-4">Chọn nút xử lý</h4>
+
+        <!-- Form -->
+        <form action="/ctrl/ok" method="post">
+            <div class="d-grid gap-3">
+                <button name="btn" value="1" class="btn btn-primary btn-custom">Gửi POST (OK 1)</button>
+                <button name="btn" value="2" class="btn btn-success btn-custom" formmethod="get">Gửi GET (OK 2)</button>
+                <button name="btn" value="3" class="btn btn-warning btn-custom" formaction="/ctrl/ok?x=3">Gửi kèm x=3 (OK 3)</button>
+            </div>
+        </form>
+
+        <!-- Hiển thị kết quả -->
+        <div class="mt-4">
+            <h6>Kết quả nhận được:</h6>
+            <h1 th:text="${methodName}" class="text-success"></h1>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
